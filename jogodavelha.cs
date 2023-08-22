@@ -25,7 +25,7 @@ namespace JogoDaVelha
         {
             jogador1 = new Jogador(nomeJogador1);
 
-            string[] nomesJogador2 = { "Alice", "Bob", "Carol", "David", "Eve" };
+            string[] nomesJogador2 = { "Alice", "Juan", "Carol", "Davi", "Godofredo" };
             int indiceAleatorio = new Random().Next(nomesJogador2.Length);
             string nomeJogador2 = nomesJogador2[indiceAleatorio];
 
