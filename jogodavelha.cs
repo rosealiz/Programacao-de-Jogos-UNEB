@@ -20,18 +20,29 @@ namespace JogoDaVelha
         private char[,] tabuleiro = new char[3, 3];
         private Jogador jogador1, jogador2;
         private Jogador jogadorAtual;
-        private bool vezJogador1;
 
         public JogoVelha(string nomeJogador1, char simboloJogador1)
         {
             jogador1 = new Jogador(nomeJogador1);
-            jogador2 = new Jogador("jogador2");
+
+            string[] nomesJogador2 = { "Alice", "Bob", "Carol", "David", "Eve" };
+            int indiceAleatorio = new Random().Next(nomesJogador2.Length);
+            string nomeJogador2 = nomesJogador2[indiceAleatorio];
+
+            jogador2 = new Jogador(nomeJogador2);
 
             jogador1.Simbolo = simboloJogador1;
-            jogador2.Simbolo = (simboloJogador1 == 'X') ? 'O' : 'X';
+
+            if (simboloJogador1 == 'X')
+            {
+                jogador2.Simbolo = 'O';
+            }
+            else
+            {
+                jogador2.Simbolo = 'X';
+            }
 
             jogadorAtual = jogador1;
-            vezJogador1 = true;
 
             InicializarTabuleiro();
         }
@@ -135,7 +146,7 @@ namespace JogoDaVelha
                 }
                 else
                 {
-                    Console.WriteLine($"Vez do {jogador2.Nome} ({jogador2.Simbolo})");
+                    Console.WriteLine($"Vez de {jogador2.Nome} ({jogador2.Simbolo})");
 
                     do
                     {
@@ -165,14 +176,14 @@ namespace JogoDaVelha
         }
     }
 
-     class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Jogo da Velha");
             Console.Write("Informe o nome do jogador físico: ");
             string nomeJogadorFisico = Console.ReadLine();
-            Console.Write($"Informe o símbolo para {nomeJogadorFisico} (X ou O): ");
+            Console.Write("Informe o símbolo para o jogador físico (X ou O): ");
             char simboloJogadorFisico = char.Parse(Console.ReadLine());
 
             JogoVelha jogo = new JogoVelha(nomeJogadorFisico, simboloJogadorFisico);
@@ -180,3 +191,4 @@ namespace JogoDaVelha
         }
     }
 }
+
